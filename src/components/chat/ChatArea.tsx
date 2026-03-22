@@ -18,10 +18,10 @@ interface ChatAreaProps {
 
 
 
-export function ChatArea({ 
-  messages, 
-  onUpdateMessages, 
-  onToggleSidebar, 
+export function ChatArea({
+  messages,
+  onUpdateMessages,
+  onToggleSidebar,
   isSidebarOpen,
   user,
   onLoginRequest,
@@ -77,7 +77,7 @@ export function ChatArea({
   };
 
   const handleFileSelect = (file: File) => {
-    const formattedSize = file.size < 1024 * 1024 
+    const formattedSize = file.size < 1024 * 1024
       ? `${(file.size / 1024).toFixed(1)} KB`
       : `${(file.size / (1024 * 1024)).toFixed(1)} MB`;
 
@@ -92,7 +92,7 @@ export function ChatArea({
         type: file.type
       }
     };
-    
+
     onUpdateMessages(prev => [...prev, userMessage]);
 
     setIsTyping(true);
@@ -123,7 +123,7 @@ export function ChatArea({
       <header className="flex items-center justify-between p-4 border-b border-slate-100 bg-white/80 backdrop-blur-md z-10">
         <div className="flex items-center gap-3">
           {!isSidebarOpen && (
-            <button 
+            <button
               onClick={onToggleSidebar}
               className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
             >
@@ -131,26 +131,26 @@ export function ChatArea({
             </button>
           )}
           <div className="flex items-center">
-            <img 
-              src="/logo.png" 
-              alt="iCollabHub Logo" 
+            <img
+              src="/icollabhub/logo.png"
+              alt="iCollabHub Logo"
               className="h-8 w-8 object-contain mr-2"
             />
             <h2 className="font-semibold text-slate-800 tracking-tight">Active Session</h2>
           </div>
         </div>
-        
+
         {/* Auth Buttons / User Profile */}
         <div className="flex items-center gap-3">
           {!user ? (
             <div className="flex items-center gap-2">
-              <button 
+              <button
                 onClick={() => onLoginRequest('login')}
                 className="text-sm font-medium text-slate-600 hover:text-slate-900 px-3 py-1.5 transition-colors"
               >
                 Log In
               </button>
-              <button 
+              <button
                 onClick={() => onLoginRequest('signup')}
                 className="text-sm font-medium bg-primary-500 hover:bg-primary-600 text-white px-4 py-1.5 rounded-lg transition-colors shadow-sm"
               >
@@ -164,7 +164,7 @@ export function ChatArea({
               </div>
               <span className="text-sm font-medium text-slate-700 hidden sm:block truncate max-w-[100px]">{user.name}</span>
               <div className="w-px h-4 bg-slate-200 mx-1"></div>
-              <button 
+              <button
                 onClick={onLogout}
                 className="text-slate-400 hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-50"
                 title="Log out"
@@ -179,23 +179,23 @@ export function ChatArea({
       {/* Messages Feed */}
       <div className="flex-1 overflow-y-auto w-full max-w-4xl mx-auto p-4 sm:p-6 pb-32">
         {messages.map((msg, idx) => (
-          <MessageBubble 
-            key={msg.id} 
-            message={msg} 
+          <MessageBubble
+            key={msg.id}
+            message={msg}
             onRetry={msg.isError ? () => handleRetry(idx) : undefined}
             onDelete={onDeleteMessage}
           />
         ))}
         {isTyping && (
           <div className="mb-6 flex gap-3 items-start animate-fade-in">
-             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-accent-600 flex-shrink-0 flex items-center justify-center shadow-md">
-                <span className="text-white text-xs font-bold">AI</span>
-             </div>
-             <div className="flex space-x-1 bg-slate-100 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm border border-slate-200/50">
-               <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-               <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-               <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div>
-             </div>
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-accent-600 flex-shrink-0 flex items-center justify-center shadow-md">
+              <span className="text-white text-xs font-bold">AI</span>
+            </div>
+            <div className="flex space-x-1 bg-slate-100 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm border border-slate-200/50">
+              <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+              <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+              <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div>
+            </div>
           </div>
         )}
         <div ref={bottomRef} className="h-4" />
@@ -209,10 +209,10 @@ export function ChatArea({
               <Suggestions onSelect={handleSend} />
             )}
           </div>
-          <InputArea 
-            onSend={handleSend} 
+          <InputArea
+            onSend={handleSend}
             onFileSelect={handleFileSelect}
-            disabled={!user} 
+            disabled={!user}
           />
         </div>
       </div>

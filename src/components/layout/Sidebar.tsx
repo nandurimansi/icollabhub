@@ -16,13 +16,13 @@ interface SidebarProps {
   user: User | null;
 }
 
-export function Sidebar({ 
-  onClose, 
-  onNewChat, 
-  onHistorySelect, 
-  onClearHistory, 
-  onProfileClick, 
-  history, 
+export function Sidebar({
+  onClose,
+  onNewChat,
+  onHistorySelect,
+  onClearHistory,
+  onProfileClick,
+  history,
   activeSessionId,
   user
 }: SidebarProps) {
@@ -38,7 +38,7 @@ export function Sidebar({
       {/* Header */}
       <div className="p-4 flex items-center justify-between border-b border-slate-200/60">
         <div className="flex items-center gap-2">
-          <img src="/logo.png" alt="iCollabHub" className="w-8 h-8" />
+          <img src="/icollabhub/logo.png" alt="iCollabHub" className="w-8 h-8" />
           <span className="font-bold text-xl tracking-tight text-slate-800">iCollabHub</span>
         </div>
         <button onClick={onClose} className="sm:hidden p-1 hover:bg-slate-200 rounded-lg transition-colors">
@@ -47,7 +47,7 @@ export function Sidebar({
       </div>
 
       <div className="p-4">
-        <button 
+        <button
           onClick={onNewChat}
           className="flex items-center gap-2 w-full bg-white border border-slate-200 hover:border-primary-400 hover:shadow-md py-2.5 px-4 rounded-xl text-slate-700 font-medium transition-all group"
         >
@@ -65,8 +65,8 @@ export function Sidebar({
             onClick={() => onHistorySelect(session.id)}
             className={clsx(
               "flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm transition-all text-left",
-              activeSessionId === session.id 
-                ? "bg-primary-50 text-primary-700 font-medium border border-primary-100" 
+              activeSessionId === session.id
+                ? "bg-primary-50 text-primary-700 font-medium border border-primary-100"
                 : "text-slate-600 hover:bg-slate-100 border border-transparent"
             )}
           >
@@ -86,7 +86,7 @@ export function Sidebar({
           <div className="bg-red-50 p-2 rounded-xl border border-red-100 animate-in fade-in slide-in-from-bottom-2 duration-300">
             <p className="text-[10px] text-red-600 font-semibold mb-2 text-center">Clear all history?</p>
             <div className="flex gap-2">
-              <button 
+              <button
                 onClick={() => {
                   onClearHistory();
                   setIsConfirmingClear(false);
@@ -95,7 +95,7 @@ export function Sidebar({
               >
                 Yes, Clear
               </button>
-              <button 
+              <button
                 onClick={() => setIsConfirmingClear(false)}
                 className="flex-1 bg-white border border-slate-200 text-slate-500 text-[10px] py-1.5 rounded-lg hover:bg-slate-50"
               >
@@ -104,8 +104,8 @@ export function Sidebar({
             </div>
           </div>
         ) : (
-          <button 
-            onClick={() => setIsConfirmingClear(true)} 
+          <button
+            onClick={() => setIsConfirmingClear(true)}
             className="flex items-center gap-2 text-xs text-slate-500 hover:text-red-600 transition-colors py-2 px-2 w-full rounded-lg hover:bg-red-50/50"
           >
             <Trash2 size={14} /> Clear History
