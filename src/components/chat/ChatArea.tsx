@@ -182,7 +182,6 @@ export function ChatArea({
           <MessageBubble 
             key={msg.id} 
             message={msg} 
-            isLast={idx === messages.length - 1} 
             onRetry={msg.isError ? () => handleRetry(idx) : undefined}
             onDelete={onDeleteMessage}
           />
