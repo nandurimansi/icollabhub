@@ -4,7 +4,7 @@ import { Bot, CheckCircle2, Copy, ChevronDown, RotateCcw, Trash2, File as FileIc
 import clsx from 'clsx';
 import type { Message } from '../../types';
 
-export function MessageBubble({ message, isLast, onRetry, onDelete }: { message: Message, isLast?: boolean, onRetry?: () => void, onDelete?: (id: string) => void }) {
+export function MessageBubble({ message, onRetry, onDelete }: { message: Message, onRetry?: () => void, onDelete?: (id: string) => void }) {
   const isAI = message.role === 'ai';
   const [copied, setCopied] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
